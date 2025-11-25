@@ -7,7 +7,7 @@ import VeganFoodBro from "@/src/assets/images/onboarding/Vegan Food Bro.png";
 
 export const ONBOARDING_SLIDES = [
   {
-    title: "Welcome EatInsight",
+    title: "Welcome NutriGenius",
     hasButton: false,
     image: HealtyFoodAmigo,
     subtitle: "Your Personal Nutritionist",

@@ -12,7 +12,7 @@ const RegisterReview = ({ name, lastName }: RegisterPersonalProps) => {
         Hey {name} {lastName}! 🎉
       </Text>
       <Text className="text-md dark:text-gray-300">
-        You're about to start your journey with EatInside! 🚀
+        You're about to start your journey with NutriGenius! 🚀
       </Text>
       <Text className="text-sm dark:text-gray-300">
         We reserve the right to make changes to this Privacy Policy at any time
@@ -34,7 +34,7 @@ const RegisterReview = ({ name, lastName }: RegisterPersonalProps) => {
       </Text>
 
       <Text className="text-md font-semibold dark:text-gray-300">
-        By registering to EatInside, you agree to our Terms of Service and
+        By registering to NutriGenius, you agree to our Terms of Service and
         Privacy Policy. 🤝
       </Text>
     </View>

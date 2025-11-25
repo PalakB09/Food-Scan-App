@@ -1,6 +1,5 @@
 import DarkModeToggle from "@/src/components/DarkModeToggle";
 import ScreenView from "@/src/components/ScreenView";
-import useMe from "@/src/query/hooks/useMe";
 import Storage from "@/src/storage";
 import { calculateBMI, getBmiCategory } from "@/src/utils/bmi";
 import { Ionicons } from "@expo/vector-icons";
@@ -55,9 +54,9 @@ const Section = ({
             color={colorScheme === "dark" ? "white" : "black"}
           />
         )}
-
         <Text className="text-md dark:text-white">{text}</Text>
       </View>
+
       {rightIcon && (
         <Ionicons
           name={rightIcon}
@@ -65,6 +64,7 @@ const Section = ({
           color={colorScheme === "dark" ? "white" : "black"}
         />
       )}
+
       {rightComponent && (
         <View className="absolute right-0">{rightComponent}</View>
       )}
@@ -73,20 +73,20 @@ const Section = ({
 };
 
 const Profile = () => {
-  const { me, isLoading } = useMe();
   const { colorScheme, toggleColorScheme } = useColorScheme();
   const { t } = useTranslation();
 
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (!me) {
-    return <Text>Error loading profile</Text>;
-  }
+  const me = {
+    firstName: "Palak",
+    lastName: "Bakshi",
+    email: "p@test.com",
+    age: 21,
+    gender: "female",
+    height: 163,
+    weight: 58,
+  };
 
   const logout = () => {
-    console.log("logout");
     Storage.clear();
     router.replace("/login");
   };
@@ -97,33 +97,43 @@ const Profile = () => {
         <Text className="text-xl font-bold dark:text-white">
           {t("profile.PERSONAL_INFORMATION")}
         </Text>
+
         <Container>
           <Section
             leftIcon="person-outline"
-            text={`${me?.firstName} ${me?.lastName}`}
+            text={`${me.firstName} ${me.lastName}`}
           />
           <Seperator />
-          <Section leftIcon="mail-outline" text={me?.email} />
+
+          <Section leftIcon="mail-outline" text={me.email} />
           <Seperator />
+
           <Section
             leftIcon="calendar-outline"
-            text={`${me?.age} ${t("profile.YEARS")}`}
+            text={`${me.age} ${t("profile.YEARS")}`}
           />
           <Seperator />
+
           <Section
             leftIcon="person-outline"
             text={t("profile.GENDER." + me.gender.toUpperCase())}
           />
           <Seperator />
-          <Section leftIcon="medkit-outline" text={`${me?.height} cm`} />
+
+          <Section leftIcon="medkit-outline" text={`${me.height} cm`} />
           <Seperator />
-          <Section leftIcon="medkit-outline" text={`${me?.weight} kg`} />
+
+          <Section leftIcon="medkit-outline" text={`${me.weight} kg`} />
           <Seperator />
+
           <Section
             leftIcon="man-outline"
-            text={`${calculateBMI(me)} BMI - ${getBmiCategory(Number(calculateBMI(me)) || 0)}`}
+            text={`${calculateBMI(me)} BMI - ${getBmiCategory(
+              Number(calculateBMI(me)) || 0
+            )}`}
           />
           <Seperator />
+
           <Section
             leftIcon="person-outline"
             text={t("profile.UPDATE_PROFILE")}
@@ -131,6 +141,7 @@ const Profile = () => {
             onPress={() => router.push("/update")}
           />
           <Seperator />
+
           <Section
             leftIcon="bar-chart-outline"
             text={t("profile.WEIGHT_HISTORY")}
@@ -138,9 +149,11 @@ const Profile = () => {
             onPress={() => router.push("/weight")}
           />
         </Container>
+
         <Text className="text-xl font-bold dark:text-white">
           {t("profile.APP_SETTINGS")}
         </Text>
+
         <Container>
           <Section
             leftIcon="moon-outline"
@@ -153,6 +166,7 @@ const Profile = () => {
             }
           />
           <Seperator />
+
           <Section
             leftIcon="language-outline"
             text={t("profile.LANGUAGE")}
@@ -166,9 +180,7 @@ const Profile = () => {
             leftIcon="log-out-outline"
             text={t("profile.LOGOUT")}
             rightIcon="chevron-forward"
-            onPress={() => {
-              logout();
-            }}
+            onPress={logout}
           />
         </Container>
       </View>

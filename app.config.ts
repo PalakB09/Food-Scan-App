@@ -1,7 +1,7 @@
 import type { ExpoConfig } from "@expo/config-types";
 
 const config: ExpoConfig = {
-  name: "EatInsight",
+  name: "NutriGenius",
   slug: "nutrition-mobile",
   version: "1.0.0",
   orientation: "portrait",
@@ -10,7 +10,7 @@ const config: ExpoConfig = {
   userInterfaceStyle: "automatic",
   newArchEnabled: true,
   splash: {
-    image: "./src/assets/images/splash.png",
+    image: "./src/assets/images/icon.png",
     resizeMode: "contain",
     backgroundColor: "#F5C998",
   },
